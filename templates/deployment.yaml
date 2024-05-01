@@ -36,6 +36,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/usr/local/bin/python3", "/image_reclassification/image_prediction.py"]
           env:
             - name: MODEL_VERSION
               value: "{{ .Values.model_version }}"
