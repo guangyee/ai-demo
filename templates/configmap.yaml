@@ -4,4 +4,6 @@ metadata:
   name: ai-demo-image-classification
 data:
   image_classification.py: |
-{{ .Files.Get "model/image_classification.py" | indent 4 }}
+{{ .Files.Get "model/image_prediction.py" | indent 4 }}
+  result.html: |
+{{ .Files.Get "model/templates/result.html" | indent 4 }}

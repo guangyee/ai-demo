@@ -1,0 +1,17 @@
+{{- if .Values.service.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ai-demo.fullname" . }}
+  labels:
+    {{- include "ai-demo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8008
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "ai-demo.selectorLabels" . | nindent 4 }}
+{{- end -}}
