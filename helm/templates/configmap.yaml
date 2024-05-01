@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: ai-demo-image-classification
 data:
-  config.json: |-
+  image_classification.py: |-
     {{ .Files.Get "../model/image_classification.py" | indent 4 }}

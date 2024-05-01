@@ -22,7 +22,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: {{ template "ai-demo.name" . }}
-          image: {{ template "ai-demo.image" . }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: "{{ .Values.image.imagePullPolicy }}"
           {{- with .Values.securityContext }}
           securityContext:
