@@ -1,12 +1,7 @@
 namespace: ai-demo
-targetCustomizations:
-  - name: staging
-    helm:
-      releaseName: ai-demo
-      chart: ""
-      repo: ""
-      version: ""
-      force: false
-    clusterSelector:
-      matchLabels:
-        ai.demo.env: staging
+helm:
+  releaseName: ai-demo
+  chart: ""
+  repo: ""
+  version: ""
+  force: false
