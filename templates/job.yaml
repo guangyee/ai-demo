@@ -25,6 +25,7 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: "{{ .Values.image.imagePullPolicy }}"
           {{- with .Values.securityContext }}
+          command: ["python3", "/image_reclassification/image_classification.py"]
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}

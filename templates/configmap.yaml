@@ -4,4 +4,4 @@ metadata:
   name: ai-demo-image-classification
 data:
   image_classification.py: |-
-    {{ .Files.Get "../model/image_classification.py" | indent 4 }}
+    {{ .Files.Get "model/image_classification.py" | b64enc | indent 4 }}
