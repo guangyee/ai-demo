@@ -1,0 +1,7 @@
+namespace: ai-demo
+helm:
+  releaseName: ai-demo
+  chart: ""
+  repo: ""
+  version: ""
+  force: false

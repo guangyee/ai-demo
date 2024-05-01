@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-demo-image-classification
+data:
+  config.json: |-
+    {{ .Files.Get "../model/image_classification.py" | indent 4 }}
