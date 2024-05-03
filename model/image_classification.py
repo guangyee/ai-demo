@@ -26,7 +26,7 @@ print('found ', image_count, ' images')
 #PIL.Image.open(str(suse[0]))
 
 #batch_size = 32
-batch_size = 5
+batch_size = 10
 img_height = 180
 img_width = 180
 

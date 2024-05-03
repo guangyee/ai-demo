@@ -42,7 +42,7 @@ securityContext: {}
 nodeSelector: {}
 
 # model version
-model_version: 2
+model_version: 3
 
 # dataset_url
 dataset_url: "http://gyee-ai-demo.s3-website.us-east-2.amazonaws.com/training_data-1.tgz"
