@@ -27,7 +27,7 @@ class_names = ['roses', 'suse']
 
 @app.route('/ai-demo', methods=['GET'])
 def ai_demo():
-    return 'AI DEMO', 200
+    return "AI Demo Production\nModel Version: " + str(model_version), 200
 
 
 @app.route('/training_result', methods=['GET'])
