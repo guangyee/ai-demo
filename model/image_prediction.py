@@ -25,6 +25,10 @@ img_width = 180
 class_names = ['roses', 'suse']
 
 
+@app.route('/ai-demo-env', methods=['GET'])
+def ai_demo_env():
+    return "Production", 200
+
 @app.route('/ai-demo', methods=['GET'])
 def ai_demo():
     return "AI Demo Staging\nModel Version: " + str(model_version), 200
