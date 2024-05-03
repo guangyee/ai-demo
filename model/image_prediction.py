@@ -24,6 +24,9 @@ img_height = 180
 img_width = 180
 class_names = ['roses', 'suse']
 
+@app.route('/ai-demo-env', methods=['GET'])
+def ai_demo_env():
+    return "Production", 200
 
 @app.route('/ai-demo', methods=['GET'])
 def ai_demo():
