@@ -89,7 +89,7 @@ def image_prediction():
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
     return render_template('image_prediction.html',
-                           image_file=uploaded_file.filename,
+                           image_file=image_filepath,
                            image_class=class_names[np.argmax(score)],
                            confidence="{:.2f}".format(100 * np.max(score)))
 
