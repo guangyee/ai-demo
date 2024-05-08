@@ -22,7 +22,7 @@ model_file = tf.keras.utils.get_file("trained_model.keras", origin=model_url)
 model = keras.models.load_model(model_file)
 img_height = 180
 img_width = 180
-class_names = ['roses', 'suse']
+class_names = ['Chemeleon', 'SuSE Logo']
 
 
 @app.route('/env', methods=['GET'])
