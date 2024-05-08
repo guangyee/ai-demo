@@ -78,8 +78,9 @@ def image_prediction():
 
     # load the image
     uploaded_file = request.files['file']
-    uploaded_file.save(uploaded_file.filename)
-    image_file = tf.keras.utils.get_file("image", origin="file:///work/" + uploaded_file.filename,
+    image_filepath = os.path.join("/image_reclassification", uploaded_file.filename)
+    uploaded_file.save(image_filepath)
+    image_file = tf.keras.utils.get_file("image", origin="file://" + image_filepath,
             force_download=True)
     img = tf.keras.utils.load_img(
         image_file, target_size=(img_height, img_width))
@@ -88,7 +89,7 @@ def image_prediction():
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
     return render_template('image_prediction.html',
-                           image_file=os.path.join('work', uploaded_file.filename),
+                           image_file=image_filepath,
                            image_class=class_names[np.argmax(score)],
                            confidence="{:.2f}".format(100 * np.max(score)))
 
