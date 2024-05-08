@@ -74,11 +74,11 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /ai-demo
+    path: /env
     port: 8008
 readinessProbe:
   httpGet:
-    path: /ai-demo
+    path: /env
     port: 8008
 
 autoscaling:
