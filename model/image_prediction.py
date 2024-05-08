@@ -12,7 +12,7 @@ from tensorflow import keras
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Resource, Api
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='/work')
 
 # TODO: make these configurable
 model_version = os.environ['MODEL_VERSION']
@@ -89,7 +89,7 @@ def image_prediction():
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
     return render_template('image_prediction.html',
-                           image_file=image_filepath,
+                           image_file=uploaded_file.filename,
                            image_class=class_names[np.argmax(score)],
                            confidence="{:.2f}".format(100 * np.max(score)))
 
