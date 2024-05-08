@@ -7,3 +7,7 @@ data:
 {{ .Files.Get "model/image_prediction.py" | indent 4 }}
   result.html: |
 {{ .Files.Get "model/templates/result.html" | indent 4 }}
+  image_upload.html:
+{{ .Files.Get "model/templates/image_upload.html" | indent 4 }}
+  image_prediction.html:
+{{ .Files.Get "model/templates/image_prediction.html" | indent 4 }}

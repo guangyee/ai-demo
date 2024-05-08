@@ -98,6 +98,10 @@ volumes:
           path: image_prediction.py
         - key: result.html
           path: templates/result.html
+        - key: image_upload.html
+          path: templates/image_upload.html
+        - key: image_prediction.html
+          path: templates/image_prediction.html
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -107,4 +111,4 @@ volumeMounts:
 nodeSelector: {}
 
 # model version
-model_version: 2
+model_version: 1
