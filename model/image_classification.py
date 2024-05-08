@@ -14,19 +14,13 @@ from tensorflow.keras.models import Sequential
 import pathlib
 
 # download dataset
-#dataset_url = "http://gyee-ai-demo.s3-website.us-east-2.amazonaws.com/training_data-1.tgz"
 dataset_url = os.environ['DATASET_URL']
 data_dir = tf.keras.utils.get_file('training_data.tar', origin=dataset_url, extract=True)
 data_dir = pathlib.Path(data_dir).with_suffix('')
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print('found ', image_count, ' images')
 
-#suse = list(data_dir.glob('suse/*'))
-#print(suse)
-#PIL.Image.open(str(suse[0]))
-
-#batch_size = 32
-batch_size = 10
+batch_size = 5
 img_height = 180
 img_width = 180
 
