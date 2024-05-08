@@ -76,9 +76,10 @@ def image_prediction():
     if request.method == 'GET':
         return render_template('image_upload.html')
 
-    data = request.get_json()
     # load the image
-    image_file = tf.keras.utils.get_file("image", origin=data['image_url'],
+    uploaded_file = request.files['file']
+    uploaded_file.save(uploaded_file.filename)
+    image_file = tf.keras.utils.get_file("image", origin=uploaded_file.filename,
             force_download=True)
     img = tf.keras.utils.load_img(
         image_file, target_size=(img_height, img_width))
