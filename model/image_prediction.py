@@ -25,16 +25,17 @@ img_width = 180
 class_names = ['roses', 'suse']
 
 
-@app.route('/ai-demo-env', methods=['GET'])
+@app.route('/env', methods=['GET'])
 def ai_demo_env():
-    return "Staging", 200
+    return "<h1><font color=\"blue\">Staging</font></h1>"
 
-@app.route('/ai-demo', methods=['GET'])
+
+@app.route('/model-version', methods=['GET'])
 def ai_demo():
-    return "AI Demo Staging\nModel Version: " + str(model_version), 200
+    return "<h1>Model Version: <font color=\"red\">" + str(model_version) + "</font></h1>"
 
 
-@app.route('/training_result', methods=['GET'])
+@app.route('/training-result', methods=['GET'])
 def training_result():
     training_log_file = tf.keras.utils.get_file("training_log", origin=training_log_url)
     with open(training_log_file) as training_log:
@@ -70,8 +71,11 @@ def training_result():
         return render_template('result.html', plot_url=plot_url)
 
 
-@app.route('/prediction', methods=['POST'])
+@app.route('/prediction', methods=['GET', 'POST'])
 def image_prediction():
+    if request.method == 'GET':
+        return render_template('image_upload.html')
+
     data = request.get_json()
     # load the image
     image_file = tf.keras.utils.get_file("image", origin=data['image_url'],
@@ -82,9 +86,9 @@ def image_prediction():
     img_array = tf.expand_dims(img_array, 0) # Create a batch
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
-    return ("This image most likely belongs to {} with a {:.2f} percent"
-            " confidence.\n\n").format(
-                    class_names[np.argmax(score)], 100 * np.max(score)), 200
+    return render_template('image_prediction.html',
+                           image_class=class_names[np.argmax(score)],
+                           confidence="{:.2f}".format(100 * np.max(score)))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8008)
