@@ -78,7 +78,7 @@ def image_prediction():
 
     # load the image
     uploaded_file = request.files['file']
-    image_filepath = os.path.join("/image_reclassification", uploaded_file.filename)
+    image_filepath = os.path.join("/work", uploaded_file.filename)
     uploaded_file.save(image_filepath)
     image_file = tf.keras.utils.get_file("image", origin="file://" + image_filepath,
             force_download=True)
