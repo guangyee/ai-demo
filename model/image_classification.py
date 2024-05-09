@@ -4,6 +4,7 @@ import boto3
 from datetime import datetime
 import numpy as np
 import os
+import pathlib
 import PIL
 import tensorflow as tf
 
@@ -11,7 +12,6 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
-import pathlib
 
 # download dataset
 dataset_url = os.environ['DATASET_URL']
@@ -67,7 +67,7 @@ num_classes = len(class_names)
 
 model = Sequential([
   resize_and_rescale,
-  data_augmentation,
+  #data_augmentation,
   layers.Conv2D(16, 3, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 3, padding='same', activation='relu'),
