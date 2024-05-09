@@ -79,7 +79,7 @@ model.summary()
 print("------------------ Training -----------------\n")
 
 model_version = os.environ['MODEL_VERSION']
-epochs=10
+epochs=20
 history_log_filename = 'training-' + str(model_version) + '.log'
 model_filename = 'trained_model-' + str(model_version) + '.keras'
 csv_logger = keras.callbacks.CSVLogger(history_log_filename)
