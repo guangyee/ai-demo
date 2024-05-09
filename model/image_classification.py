@@ -20,7 +20,7 @@ data_dir = pathlib.Path(data_dir).with_suffix('')
 image_count = len(list(data_dir.glob('*/*.jpg')))
 print('found ', image_count, ' images')
 
-batch_size = 5
+batch_size = 8
 img_height = 180
 img_width = 180
 
@@ -58,8 +58,6 @@ first_image = image_batch[0]
 num_classes = len(class_names)
 
 model = Sequential([
-  layers.RandomFlip("horizontal_and_vertical"),
-  layers.RandomRotation(0.2),
   layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
   layers.Conv2D(16, 3, padding='same', activation='relu'),
   layers.MaxPooling2D(),
