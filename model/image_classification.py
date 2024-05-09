@@ -67,7 +67,7 @@ num_classes = len(class_names)
 
 model = Sequential([
   resize_and_rescale,
-  #data_augmentation,
+  data_augmentation,
   layers.Conv2D(16, 3, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 3, padding='same', activation='relu'),
