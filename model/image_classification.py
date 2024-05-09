@@ -68,9 +68,9 @@ first_image = image_batch[0]
 num_classes = len(class_names)
 
 model = Sequential([
-  #layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
-  resize_and_rescale,
-  data_augmentation,
+  layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+  #resize_and_rescale,
+  #data_augmentation,
   layers.Conv2D(16, 3, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 3, padding='same', activation='relu'),
@@ -91,7 +91,7 @@ model.summary()
 print("------------------ Training -----------------\n")
 
 model_version = os.environ['MODEL_VERSION']
-epochs=20
+epochs=10
 history_log_filename = 'training-' + str(model_version) + '.log'
 model_filename = 'trained_model-' + str(model_version) + '.keras'
 csv_logger = keras.callbacks.CSVLogger(history_log_filename)
