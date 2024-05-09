@@ -45,4 +45,4 @@ nodeSelector: {}
 model_version: 1
 
 # dataset_url
-dataset_url: "http://gyee-ai-demo.s3-website.us-east-2.amazonaws.com/training_data-1.tgz"
+dataset_url: "http://gyee-ai-demo.s3-website.us-east-2.amazonaws.com/training_data-2.tgz"
