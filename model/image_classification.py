@@ -24,6 +24,16 @@ batch_size = 8
 img_height = 180
 img_width = 180
 
+resize_and_rescale = tf.keras.Sequential([
+  layers.Resizing(img_height, img_width),
+  layers.Rescaling(1./255)
+])
+
+data_augmentation = tf.keras.Sequential([
+  layers.RandomFlip("horizontal_and_vertical"),
+  layers.RandomRotation(0.2),
+])
+
 train_ds = tf.keras.utils.image_dataset_from_directory(
   data_dir,
   validation_split=0.2,
@@ -58,7 +68,9 @@ first_image = image_batch[0]
 num_classes = len(class_names)
 
 model = Sequential([
-  layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+  #layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+  resize_and_rescale,
+  data_augmentation,
   layers.Conv2D(16, 3, padding='same', activation='relu'),
   layers.MaxPooling2D(),
   layers.Conv2D(32, 3, padding='same', activation='relu'),
