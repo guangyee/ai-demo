@@ -12,7 +12,7 @@ from tensorflow import keras
 from flask import Flask, jsonify, render_template, request
 from flask_restful import Resource, Api
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='/work')
 
 # TODO: make these configurable
 model_version = os.environ['MODEL_VERSION']
@@ -22,7 +22,7 @@ model_file = tf.keras.utils.get_file("trained_model.keras", origin=model_url)
 model = keras.models.load_model(model_file)
 img_height = 180
 img_width = 180
-class_names = ['roses', 'suse']
+class_names = ['Chemeleon', 'SuSE Logo']
 
 
 @app.route('/env', methods=['GET'])
@@ -78,8 +78,9 @@ def image_prediction():
 
     # load the image
     uploaded_file = request.files['file']
-    uploaded_file.save(uploaded_file.filename)
-    image_file = tf.keras.utils.get_file("image", origin="file:///work/" + uploaded_file.filename,
+    image_filepath = os.path.join("/work", uploaded_file.filename)
+    uploaded_file.save(image_filepath)
+    image_file = tf.keras.utils.get_file("image", origin="file://" + image_filepath,
             force_download=True)
     img = tf.keras.utils.load_img(
         image_file, target_size=(img_height, img_width))
@@ -88,6 +89,7 @@ def image_prediction():
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
     return render_template('image_prediction.html',
+                           image_file=image_filepath,
                            image_class=class_names[np.argmax(score)],
                            confidence="{:.2f}".format(100 * np.max(score)))
 
